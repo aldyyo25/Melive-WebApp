@@ -25,11 +25,13 @@ This is a [Next.js](https://nextjs.org) project with TypeScript, built with mode
 ## 🛠️ Getting Started
 
 1. **Install dependencies**:
+
    ```bash
    npm install
    ```
 
 2. **Run the development server**:
+
    ```bash
    npm run dev
    ```
@@ -39,25 +41,28 @@ This is a [Next.js](https://nextjs.org) project with TypeScript, built with mode
 
 ## 📝 Available Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start development server with Turbopack |
-| `npm run build` | Build the application for production |
-| `npm run start` | Start the production server |
-| `npm run lint` | Run ESLint to check for issues |
-| `npm run lint:fix` | Run ESLint and fix auto-fixable issues |
-| `npm run format` | Format code with Prettier |
-| `npm run format:check` | Check if code is formatted correctly |
+| Script                 | Description                             |
+| ---------------------- | --------------------------------------- |
+| `npm run dev`          | Start development server with Turbopack |
+| `npm run build`        | Build the application for production    |
+| `npm run start`        | Start the production server             |
+| `npm run lint`         | Run ESLint to check for issues          |
+| `npm run lint:fix`     | Run ESLint and fix auto-fixable issues  |
+| `npm run format`       | Format code with Prettier               |
+| `npm run format:check` | Check if code is formatted correctly    |
 
 ## 🔧 Development Workflow
 
 ### Code Quality
+
 This project enforces code quality through:
+
 - **ESLint**: Catches potential bugs and enforces coding standards
 - **Prettier**: Ensures consistent code formatting
 - **Pre-commit hooks**: Automatically runs linting and formatting checks before commits
 
 ### Commit Standards
+
 This project uses [Conventional Commits](https://www.conventionalcommits.org/). Your commit messages should follow this format:
 
 ```
@@ -69,6 +74,7 @@ type(scope): description
 ```
 
 **Examples**:
+
 - `feat: add user authentication`
 - `fix: resolve navigation bug`
 - `docs: update README`
@@ -76,6 +82,7 @@ type(scope): description
 - `refactor: optimize component structure`
 
 ### Git Hooks
+
 - **Pre-commit**: Runs linting and formatting checks
 - **Commit-msg**: Validates commit message format
 
