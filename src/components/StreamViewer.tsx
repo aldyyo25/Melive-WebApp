@@ -130,8 +130,8 @@ export const StreamViewer = () => {
             <div className="flex flex-col lg:flex-row gap-4 h-full">
               <div className="flex-1 lg:flex-[2] relative">
                 {/* Portrait Video Container */}
-                <div className="max-w-[1000px] mx-auto relative">
-                  <div className="aspect-[4/3] bg-black rounded-lg overflow-hidden shadow-lg relative">
+                <div className="max-w-[400px] mx-auto relative">
+                  <div className="portrait-video bg-black relative">
                     <AgoraVideoPlayerWrapper
                       appId={currentStream.app_id}
                       channel={currentStream.channel}
@@ -139,17 +139,17 @@ export const StreamViewer = () => {
                       uid={currentStream.uid}
                       className="h-full w-full"
                     />
-                    
+
                     {/* Gift Animation Layer */}
-                    <GiftAnimation 
-                      gift={currentGift} 
-                      onAnimationEnd={() => setCurrentGift(null)} 
+                    <GiftAnimation
+                      gift={currentGift}
+                      onAnimationEnd={() => setCurrentGift(null)}
                     />
-                    
+
                     {/* Gift Button */}
                     <div className="absolute bottom-4 right-4 z-10">
-                      <GiftPanel 
-                        streamId={currentStream.stream_id} 
+                      <GiftPanel
+                        streamId={currentStream.stream_id}
                         onGiftSent={(gift) => setCurrentGift(gift)}
                       />
                     </div>

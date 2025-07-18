@@ -92,7 +92,10 @@ export const AgoraUIKitPlayer = ({
       <div
         ref={videoRef}
         className="w-full h-full"
-        style={{ transform: 'rotate(0deg)' }} // Change to '90deg', '180deg', etc. as needed
+        style={{
+          transform: 'rotate(0deg)', // Change as needed
+          objectFit: 'contain', // Add this line for object-fit
+        }}
       />
       {!isConnected && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-900 text-white">

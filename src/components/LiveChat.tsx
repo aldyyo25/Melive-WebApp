@@ -51,11 +51,7 @@ interface LiveChatProps {
   className?: string;
 }
 
-export const LiveChat = ({
-  streamId,
-  channelCode,
-  className = '',
-}: LiveChatProps) => {
+export const LiveChat = ({ channelCode, className = '' }: LiveChatProps) => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [user] = useState(`User${Math.floor(Math.random() * 1000)}`);
