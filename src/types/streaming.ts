@@ -32,7 +32,7 @@ export interface StreamingResponse {
 export interface StreamDetails {
   stream_id: string;
   channel: string;
-  token: string;
+  agora_token: string | null;
   app_id: string;
   uid?: number;
 }

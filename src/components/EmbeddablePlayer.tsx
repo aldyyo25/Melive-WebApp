@@ -68,7 +68,7 @@ export const EmbeddablePlayer = ({
       <AgoraVideoPlayerWrapper
         appId={streamDetails.app_id}
         channel={streamDetails.channel}
-        token={streamDetails.token}
+        token={streamDetails.agora_token ?? ''}
         uid={streamDetails.uid}
         className="w-full h-full"
       />

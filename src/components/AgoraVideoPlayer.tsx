@@ -10,8 +10,7 @@ type IAgoraRTCRemoteUser = any;
 interface AgoraVideoPlayerProps {
   appId: string;
   channel: string;
-  token: string;
-  uid?: number;
+  token: string | null;
   className?: string;
 }
 
@@ -19,7 +18,6 @@ export const AgoraVideoPlayer = ({
   appId,
   channel,
   token,
-  uid = 0,
   className = '',
 }: AgoraVideoPlayerProps) => {
   const videoRef = useRef<HTMLDivElement>(null);
@@ -31,7 +29,7 @@ export const AgoraVideoPlayer = ({
     const initAgora = async () => {
       try {
         const { default: AgoraRTC } = await import('agora-rtc-sdk-ng');
-        
+
         if (!AgoraRTC.checkSystemRequirements()) {
           setError('WebRTC not supported');
           return;
@@ -73,7 +71,7 @@ export const AgoraVideoPlayer = ({
         );
 
         // Join channel with error handling
-        await client.join(appId, channel, token, uid);
+        await client.join(appId, channel, token);
         setIsConnected(true);
         setError(null);
       } catch (err: unknown) {
@@ -107,7 +105,7 @@ export const AgoraVideoPlayer = ({
       }
       setIsConnected(false);
     };
-  }, [appId, channel, token, uid]);
+  }, [appId, channel, token]);
 
   if (error) {
     return (

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Link from 'next/link';
 import ErrorBoundary from '@/components/ErrorBoundary';
+import { Providers } from '@/components/Providers';
 import './globals.css';
 
 const geistSans = Geist({
@@ -42,7 +43,9 @@ export default function RootLayout({
             </div>
           </div>
         </nav>
-        <ErrorBoundary>{children}</ErrorBoundary>
+        <Providers>
+          <ErrorBoundary>{children}</ErrorBoundary>
+        </Providers>
       </body>
     </html>
   );
