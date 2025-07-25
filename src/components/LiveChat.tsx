@@ -9,7 +9,6 @@ import {
   orderBy,
   onSnapshot,
   limit,
-  getDocs,
   serverTimestamp,
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
@@ -51,14 +50,15 @@ interface LiveChatProps {
   className?: string;
 }
 
-export const LiveChat = ({
-  streamId,
-  channelCode,
-  className = '',
-}: LiveChatProps) => {
+export const LiveChat = ({ streamId, channelCode, className = '' }: LiveChatProps) => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [newMessage, setNewMessage] = useState('');
-  const [user] = useState(`User${Math.floor(Math.random() * 1000)}`);
+  const [user] = useState(() => {
+    // Generate a more unique user ID based on timestamp
+    const timestamp = Date.now().toString(36);
+    const random = Math.random().toString(36).substr(2, 5);
+    return `User_${timestamp}_${random}`;
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -75,23 +75,11 @@ export const LiveChat = ({
         const collectionRef = collection(db, `live_comments_${channelCode}`);
         const initialQuery = query(
           collectionRef,
-          orderBy('timestamp', 'desc'),
+          orderBy('timestamp', 'asc'),
           limit(50)
         );
 
-        const initialSnapshot = await getDocs(initialQuery);
-        const existingMessages = initialSnapshot.docs.map(
-          (doc) =>
-            ({
-              id: doc.id,
-              ...doc.data(),
-            }) as ChatMessage
-        );
-
-        setMessages(existingMessages.reverse());
-        setLoading(false);
-
-        // Then set up real-time listener
+        // Set up real-time listener directly (no double loading)
         const unsubscribe = onSnapshot(
           initialQuery,
           (snapshot) => {
@@ -102,11 +90,27 @@ export const LiveChat = ({
                   ...doc.data(),
                 }) as ChatMessage
             );
-            setMessages(newMessages.reverse());
+            
+            // Only update if messages actually changed
+            setMessages((prevMessages) => {
+              if (prevMessages.length !== newMessages.length) {
+                return newMessages;
+              }
+              
+              // Check if any message is different
+              const hasChanges = newMessages.some((newMsg, index) => 
+                !prevMessages[index] || prevMessages[index].id !== newMsg.id
+              );
+              
+              return hasChanges ? newMessages : prevMessages;
+            });
+            
+            setLoading(false); // Set loading false after first data load
           },
           (error) => {
             console.error('Chat listener error:', error);
             setError('Failed to load messages');
+            setLoading(false);
           }
         );
 

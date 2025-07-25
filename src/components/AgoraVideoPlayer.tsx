@@ -11,7 +11,6 @@ interface AgoraVideoPlayerProps {
   appId: string;
   channel: string;
   token: string | null;
-  //uid?: number;
   className?: string;
 }
 
@@ -19,7 +18,6 @@ export const AgoraVideoPlayer = ({
   appId,
   channel,
   token,
-  //uid = 123,
   className = '',
 }: AgoraVideoPlayerProps) => {
   const videoRef = useRef<HTMLDivElement>(null);
@@ -73,7 +71,6 @@ export const AgoraVideoPlayer = ({
         );
 
         // Join channel with error handling
-        //await client.join(appId, channel, token, uid);
         await client.join(appId, channel, token);
         setIsConnected(true);
         setError(null);
@@ -108,7 +105,6 @@ export const AgoraVideoPlayer = ({
       }
       setIsConnected(false);
     };
-    //}, [appId, channel, token, uid]);
   }, [appId, channel, token]);
 
   if (error) {

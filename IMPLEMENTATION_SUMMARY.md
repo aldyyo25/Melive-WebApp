@@ -3,25 +3,37 @@
 ## ✅ Issues Fixed and Solutions Implemented
 
 ### 1. **AgoraRTCError NOT_SUPPORTED: enumerateDevices() not supported**
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 - **Solution**: Created `AgoraVideoPlayerWrapper.tsx` with dynamic imports and `ssr: false`
 - **Implementation**: Proper client-side only loading of Agora SDK
 - **Code**: Uses `typeof window !== 'undefined'` checks before SDK initialization
 
 ### 2. **AgoraRTCError WEB_SECURITY_RESTRICT: Your context is limited by web security**
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 - **Solution**: Added automatic detection of secure context
 - **Implementation**: Checks for HTTPS or localhost before initializing WebRTC
 - **Code**: Shows appropriate error messages for insecure contexts
 
 ### 3. **Error: window is not defined**
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 - **Solution**: Implemented proper SSR handling
 - **Implementation**: Dynamic imports with SSR disabled for client-only components
 - **Code**: All Agora-related code runs only on client side
 
 ### 4. **Error: broadcasters.map is not a function**
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 - **Solution**: Robust API response handling with fallbacks
 - **Implementation**: Multiple response format support + mock data
 - **Code**: Array validation and type checking before using `.map()`
@@ -48,26 +60,38 @@ src/
 ## 🔧 Key Features Implemented
 
 ### 1. **Clean Architecture**
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 - Separation of concerns (services, hooks, components)
 - TypeScript interfaces for type safety
 - Error boundaries for graceful error handling
 
 ### 2. **Robust Error Handling**
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 - Automatic retry mechanisms with exponential backoff
 - Mock data fallback for development
 - User-friendly error messages
 - Network timeout handling
 
 ### 3. **SSR Compatibility**
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 - Dynamic imports for client-only components
 - Proper hydration handling
 - No server-side WebRTC initialization
 
 ### 4. **Embeddable Player**
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 - Standalone embed route at `/embed`
 - URL parameters for customization
 - Ready for iframe embedding
@@ -75,13 +99,25 @@ src/
 ## 🚀 Usage Examples
 
 ### 1. **Main Application**
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 ```typescript
 // Automatically loads broadcaster list and handles errors
 <StreamViewer />
 ```
 
 ### 2. **Embeddable Player**
+<<<<<<< HEAD
+```html
+<iframe 
+  src="https://your-domain.com/embed?streamId=STREAM_ID&width=800px&height=450px"
+  width="800" 
+  height="450" 
+  frameborder="0" 
+  allowfullscreen>
+=======
 
 ```html
 <iframe
@@ -91,11 +127,15 @@ src/
   frameborder="0"
   allowfullscreen
 >
+>>>>>>> aldyyo/main
 </iframe>
 ```
 
 ### 3. **Direct Component Usage**
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 ```typescript
 <AgoraVideoPlayerWrapper
   appId="your-app-id"
@@ -109,7 +149,10 @@ src/
 ## 🧪 Testing & Development
 
 ### Environment Setup
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 ```bash
 # Install dependencies
 npm install
@@ -123,13 +166,19 @@ npm run dev
 ```
 
 ### Mock Data
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 - Automatically used when API calls fail
 - Perfect for development and testing
 - Configurable via environment variables
 
 ### Error Scenarios Handled
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 - ✅ Network failures
 - ✅ Invalid API responses
 - ✅ WebRTC not supported
@@ -140,14 +189,20 @@ npm run dev
 ## 📱 Browser Compatibility
 
 ### Supported
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 - ✅ Chrome/Chromium (recommended)
 - ✅ Firefox
 - ✅ Safari (with HTTPS)
 - ✅ Edge
 
 ### Requirements
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 - ✅ HTTPS or localhost for WebRTC
 - ✅ Modern browser with WebRTC support
 - ✅ JavaScript enabled
@@ -162,7 +217,10 @@ npm run dev
 ## 🚀 Deployment Ready
 
 The application is production-ready with:
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 - ✅ TypeScript compilation
 - ✅ ESLint compliance
 - ✅ Prettier formatting
@@ -181,11 +239,18 @@ The application is production-ready with:
 ## 🔄 Iteration Results
 
 After 5 iterations of testing and refinement:
+<<<<<<< HEAD
+=======
 
+>>>>>>> aldyyo/main
 1. **Iteration 1**: Fixed SSR and window issues
 2. **Iteration 2**: Implemented robust API handling with mock data
 3. **Iteration 3**: Added comprehensive error handling and retry logic
 4. **Iteration 4**: Created dynamic import wrapper for Agora components
 5. **Iteration 5**: Enhanced error boundaries and user experience
 
+<<<<<<< HEAD
 All major issues have been resolved and the application is ready for production use.
+=======
+All major issues have been resolved and the application is ready for production use.
+>>>>>>> aldyyo/main
