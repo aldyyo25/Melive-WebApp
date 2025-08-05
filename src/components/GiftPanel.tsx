@@ -118,30 +118,55 @@ export const GiftPanel = ({ streamId, onGiftSent }: GiftPanelProps) => {
                   <div
                     key={gift.id}
                     onClick={() => handleSelectGift(gift)}
-                    className={`p-3 border rounded-lg text-center cursor-pointer transition-all ${
+                    className={`p-3 border rounded-lg text-center cursor-pointer transition-all relative ${
                       selectedGift?.id === gift.id
                         ? 'border-fuchsia-500 bg-fuchsia-50'
                         : 'border-gray-200 hover:border-fuchsia-300'
+                    } ${
+                      gift.rarity === 'legendary'
+                        ? 'shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/40'
+                        : gift.rarity === 'epic'
+                          ? 'shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40'
+                          : gift.rarity === 'rare'
+                            ? 'shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40'
+                            : 'hover:shadow-md'
                     }`}
                   >
                     <div className="w-12 h-12 mx-auto mb-2 relative">
-                      <img
-                        src={gift.icon_url}
-                        alt={gift.name}
-                        className="w-full h-full object-contain"
-                        onError={(e) => {
-                          console.warn(
-                            `Failed to load gift icon: ${gift.icon_url}`
-                          );
-                          (e.target as HTMLImageElement).src =
-                            '/default-image.jpg';
-                        }}
-                      />
+                      <div className="text-4xl flex items-center justify-center h-full">
+                        {gift.icon_url}
+                      </div>
                     </div>
+                    {/* Rarity indicator */}
+                    {gift.rarity === 'legendary' && (
+                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
+                    )}
+                    {gift.rarity === 'epic' && (
+                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-purple-400 rounded-full animate-pulse"></div>
+                    )}
+                    {gift.rarity === 'rare' && (
+                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                    )}
+
                     <p className="text-sm font-medium">{gift.name}</p>
-                    <p className="text-xs text-fuchsia-600">
-                      {gift.price_in_diamond} 💎
-                    </p>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-fuchsia-600 font-medium">
+                        {gift.price_in_diamond} 💎
+                      </span>
+                      <span
+                        className={`px-1 py-0.5 rounded text-[10px] font-medium ${
+                          gift.rarity === 'legendary'
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : gift.rarity === 'epic'
+                              ? 'bg-purple-100 text-purple-800'
+                              : gift.rarity === 'rare'
+                                ? 'bg-blue-100 text-blue-800'
+                                : 'bg-gray-100 text-gray-800'
+                        }`}
+                      >
+                        {gift.rarity.toUpperCase()}
+                      </span>
+                    </div>
                   </div>
                 ))}
               </div>

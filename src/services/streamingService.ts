@@ -32,7 +32,7 @@ const AGORA_APP_ID = 'f38d3c28bd964f62abe85c254af23bbd';
 const MOCK_STREAM_DETAILS: StreamDetails = {
   stream_id: 'test-stream',
   channel: 'test-channel',
-  token: 'test-token',
+  agora_token: 'test-token',
   app_id: AGORA_APP_ID,
   uid: 123,
 };
@@ -99,7 +99,7 @@ class StreamingService {
         //channel: 'melive_channel_492218',
         //token:'006f38d3c28bd964f62abe85c254af23bbdIACKnym31eOj1ww4AxJUJE0WlAtB49iFRCgADNXggaST3P6UJH4AAAAAIgDDOaoKMmJ3aAQAAQDCHnZoAgDCHnZoAwDCHnZoBADCHnZo',
         channel: stream.channel_code,
-        token: stream.agora_token,
+        agora_token: stream.agora_token,
         app_id: AGORA_APP_ID,
         uid: this.generateUniqueUID(),
       };

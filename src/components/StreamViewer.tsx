@@ -6,6 +6,7 @@ import { StreamCard } from './StreamCard';
 import { LiveChat } from './LiveChat';
 import { GiftPanel } from './GiftPanel';
 import { GiftAnimation } from './GiftAnimation';
+import { GiftSuccessPopup } from './GiftSuccessPopup';
 import { useStreaming } from '@/hooks/useStreaming';
 import { Broadcaster, StreamDetails } from '@/types/streaming';
 import { Gift } from '@/types/gift';
@@ -19,6 +20,8 @@ export const StreamViewer = () => {
   const [streamLoading, setStreamLoading] = useState(false);
   const [streamError, setStreamError] = useState<string | null>(null);
   const [currentGift, setCurrentGift] = useState<Gift | null>(null);
+  const [successGift, setSuccessGift] = useState<Gift | null>(null);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const handleJoinStream = async (broadcaster: Broadcaster) => {
     // Clear any existing stream first
@@ -135,7 +138,7 @@ export const StreamViewer = () => {
                     <AgoraVideoPlayerWrapper
                       appId={currentStream.app_id}
                       channel={currentStream.channel}
-                      token={currentStream.token ?? ''}
+                      token={currentStream.agora_token ?? ''}
                       uid={currentStream.uid}
                       className="h-full w-full"
                     />
@@ -150,7 +153,11 @@ export const StreamViewer = () => {
                     <div className="absolute bottom-4 right-4 z-10">
                       <GiftPanel
                         streamId={currentStream.stream_id}
-                        onGiftSent={(gift) => setCurrentGift(gift)}
+                        onGiftSent={(gift) => {
+                          setCurrentGift(gift);
+                          setSuccessGift(gift);
+                          setShowSuccessPopup(true);
+                        }}
                       />
                     </div>
                   </div>
@@ -208,6 +215,16 @@ export const StreamViewer = () => {
           )}
         </div>
       )}
+
+      {/* Gift Success Popup */}
+      <GiftSuccessPopup
+        gift={successGift}
+        isOpen={showSuccessPopup}
+        onClose={() => {
+          setShowSuccessPopup(false);
+          setSuccessGift(null);
+        }}
+      />
     </div>
   );
 };
